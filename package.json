@@ -1,7 +1,7 @@
 {
   "name": "generic-webpack-react",
   "version": "1.0.0",
-  "description": "A relatively simple react webpack project based on parts of the SurvivalJS tutorials",
+  "description": "A relatively simple webpack react project based on parts of the SurvivalJS tutorials",
   "scripts": {
     "start": "webpack-dev-server",
     "stats": "webpack --profile --json > stats.json",
