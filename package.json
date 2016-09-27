@@ -41,10 +41,12 @@
     "webpack-validator": "^2.2.7"
   },
   "dependencies": {
+    "highcharts": "^4.2.7",
     "lodash": "^4.16.2",
     "node-uuid": "^1.4.7",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-highcharts": "^10.0.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
