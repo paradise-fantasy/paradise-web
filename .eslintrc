@@ -9,6 +9,7 @@
     "react"
   ],
   "rules": {
-    "react/require-extension": "off"
+    "react/require-extension": "off",
+    "comma-dangle": "off"
   }
 }

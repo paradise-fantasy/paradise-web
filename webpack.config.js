@@ -41,7 +41,8 @@ const common = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack demo'
+      title: 'Webpack demo',
+      template: 'app/template.html'
     })
   ],
   resolve: {

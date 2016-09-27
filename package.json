@@ -1,5 +1,5 @@
 {
-  "name": "generic-webpack-react",
+  "name": "paradise-web",
   "version": "1.0.0",
   "description": "A relatively simple webpack react project based on parts of the SurvivalJS tutorials",
   "scripts": {
@@ -8,13 +8,18 @@
     "build": "webpack",
     "test:lint": "eslint . --ext .js --ext .jsx || true"
   },
-  "keywords": ["react", "webpack", "boilerplate"],
+  "keywords": [
+    "react",
+    "webpack",
+    "boilerplate"
+  ],
   "author": "Khrall",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.14.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-react-hmre": "^1.1.1",
@@ -36,7 +41,14 @@
     "webpack-validator": "^2.2.7"
   },
   "dependencies": {
+    "lodash": "^4.16.2",
+    "node-uuid": "^1.4.7",
     "react": "^15.3.1",
-    "react-dom": "^15.3.1"
+    "react-dom": "^15.3.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.8.1",
+    "react-router-redux": "^4.0.6",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.1.0"
   }
 }
