@@ -6,6 +6,7 @@
     "start": "webpack-dev-server",
     "stats": "webpack --profile --json > stats.json",
     "build": "webpack",
+    "test": "echo \"No tests yet!\"",
     "test:lint": "eslint . --ext .js --ext .jsx || true"
   },
   "keywords": [
