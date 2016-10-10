@@ -6,4 +6,4 @@ deployment:
     branch: master
     commands:
       - npm run build
-      - aws s3 sync build s3://paradise-web/ -region eu-west-1 --delete
+      - aws s3 sync build s3://paradise-web/ --region eu-west-1 --delete
