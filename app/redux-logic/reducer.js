@@ -1,25 +1,25 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
-import { concat } from 'lodash';
-import { v4 } from 'node-uuid';
-import { ADD_LIST_ELEMENT, REMOVE_LIST_ELEMENT } from './constants';
+import { CHANGE_DATA } from './constants';
 
-const listReducer = (state = [], action) => {
+const initData = [
+  { name: 'Frederik', value: 10 },
+  { name: 'Raymi', value: 0 },
+  { name: 'Kabbe', value: 0 }
+];
+const dataReducer = (state = initData, action) => {
   switch (action.type) {
-    case ADD_LIST_ELEMENT:
-      return concat(state, {
-        id: v4(),
-        text: action.text
-      });
-    case REMOVE_LIST_ELEMENT:
-      return state.filter(({ id }) => id !== action.id);
+    case CHANGE_DATA:
+      return state.map(entry =>
+        (entry.name !== action.name ? entry : { ...entry, value: action.value })
+      );
     default:
       return state;
   }
 };
 
 const rootReducer = combineReducers({
-  list: listReducer,
+  data: dataReducer,
   routing
 });
 

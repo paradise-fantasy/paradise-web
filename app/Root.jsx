@@ -1,65 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import NumberInput from './components/NumberInput.jsx';
+import Chart from './components/Chart.jsx';
+import { changeData } from './redux-logic/actions';
 
-import { addListElement, removeListElement } from './redux-logic/actions';
-
-class TextInput extends Component {
-  constructor() {
-    super();
-    this.state = { value: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleKeyPress(event) {
-    if (event.key === 'Enter') {
-      this.props.onSubmit(this.state.value);
-      this.setState({ value: '' });
+const config = {
+  chart: {
+    type: 'column'
+  },
+  title: {
+    text: 'Kontor'
+  },
+  xAxis: {
+    categories: ['Frederik', 'Raymi', 'Kabbe']
+  },
+  yAxis: {
+    title: {
+      text: 'Fruit eaten'
     }
+  },
+  series: [{
+    name: 'Tid',
+    value: [0, 0, 0]
+  }]
+};
+
+class App extends Component {
+  static propTypes = {
+    data: React.PropTypes.array,
+    dispatch: React.PropTypes.func
   }
 
   render() {
+    const { data, dispatch } = this.props;
     return (
-      <input
-        value={this.state.value}
-        placeholder="Your text here m8"
-        onChange={this.handleChange}
-        onKeyPress={this.handleKeyPress}
-      />
+      <div>
+        <Chart config={config} data={[data.map(entry => entry.value)]} />
+        {
+          data.map(entry =>
+            <NumberInput
+              key={entry.name}
+              onChange={(number) => dispatch(changeData(entry.name, number))}
+            />
+          )
+        }
+      </div>
     );
   }
 }
 
-TextInput.propTypes = {
-  onSubmit: React.PropTypes.func
-};
-
-const App = ({ dispatch, listItems }) => (
-  <div>
-    <h1>Press enter to add to list</h1>
-    <ul className="items">
-      {
-        listItems.map(
-          item =>
-            <li key={item.id}>
-              {item.text}
-              <button onClick={() => dispatch(removeListElement(item.id))}>x</button>
-            </li>
-        )
-      }
-    </ul>
-    <TextInput onSubmit={(text) => dispatch(addListElement(text))} />
-  </div>
-);
-
-App.propTypes = {
-  dispatch: React.PropTypes.func,
-  listItems: React.PropTypes.array
-};
 
 /**
  * mapStateToProps injects App with properties derived
@@ -68,8 +57,6 @@ App.propTypes = {
  * In this example, we will inject a 'listItems' property
  * from the 'list' field in our redux state.
  */
-const mapStateToProps = state => ({
-  listItems: state.list
-});
+const mapStateToProps = (state) => ({ data: state.data });
 
 export default connect(mapStateToProps)(App);
