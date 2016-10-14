@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { FormControl } from 'react-bootstrap';
 
 class NumberInput extends Component {
   static propTypes = {
     onChange: PropTypes.func,
-    startValue: PropTypes.number
+    startValue: PropTypes.number,
+    className: PropTypes.string
   }
 
   constructor(props) {
@@ -21,7 +23,7 @@ class NumberInput extends Component {
   }
 
   render() {
-    return <input type="number" value={this.state.number} onChange={this.handleChange} />;
+    return <FormControl className={this.props.className || ''} type="number" value={this.state.number} onChange={this.handleChange} />;
   }
 }
 
