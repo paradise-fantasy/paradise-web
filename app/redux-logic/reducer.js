@@ -1,5 +1,3 @@
-import { combineReducers } from 'redux';
-import { routerReducer as routing } from 'react-router-redux';
 import { CHANGE_DATA } from './constants';
 
 const initData = [
@@ -18,9 +16,4 @@ const dataReducer = (state = initData, action) => {
   }
 };
 
-const rootReducer = combineReducers({
-  data: dataReducer,
-  routing
-});
-
-export default rootReducer;
+export default dataReducer;

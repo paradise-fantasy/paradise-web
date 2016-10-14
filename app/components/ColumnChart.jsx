@@ -1,14 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import ReactHighcharts from 'react-highcharts';
 
+const commonConfig = {
+  chart: {
+    type: 'column'
+  },
+  xAxis: {}
+};
+
 class Chart extends Component {
   static propTypes = {
+    seriesName: PropTypes.string.isRequired,
     data: PropTypes.array,
-    config: PropTypes.object
   }
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
     this.updateData = this.updateData.bind(this);
+    this.config = {
+      ...commonConfig,
+      series: [{
+        name: props.seriesName,
+        value: []
+      }]
+    };
   }
 
   componentDidMount() {
@@ -23,13 +38,16 @@ class Chart extends Component {
 
   updateData(data) {
     const chart = this.chart.getChart();
-    data.forEach((serieData, index) => { chart.series[index].setData(serieData); });
+    const categories = data.map(entry => entry.category);
+    const values = data.map(entry => entry.value);
+    chart.xAxis[0].setCategories(categories);
+    chart.series[0].setData(values);
   }
 
   render() {
     return (
       <ReactHighcharts
-        config={this.props.config}
+        config={this.config}
         ref={c => { this.chart = c; }}
         isPureConfig
       />

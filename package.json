@@ -41,6 +41,8 @@
     "webpack-validator": "^2.2.7"
   },
   "dependencies": {
+    "firebase": "^3.4.1",
+    "firedux": "^0.6.6",
     "highcharts": "^5.0.0",
     "lodash": "^4.16.2",
     "node-uuid": "^1.4.7",

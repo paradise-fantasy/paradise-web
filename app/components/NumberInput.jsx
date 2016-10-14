@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class NumberInput extends Component {
   static propTypes = {
-    onChange: React.PropTypes.func
+    onChange: PropTypes.func,
+    startValue: PropTypes.number
   }
 
-  constructor() {
-    super();
-    this.state = { number: 0 };
+  constructor(props) {
+    super(props);
+    this.state = { number: props.startValue || 0 };
     this.handleChange = this.handleChange.bind(this);
   }
 

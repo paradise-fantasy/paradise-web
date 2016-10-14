@@ -1,46 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { map } from 'lodash';
 import NumberInput from './components/NumberInput.jsx';
-import Chart from './components/Chart.jsx';
-import { changeData } from './redux-logic/actions';
-
-const config = {
-  chart: {
-    type: 'column'
-  },
-  title: {
-    text: 'Kontor'
-  },
-  xAxis: {
-    categories: ['Frederik', 'Raymi', 'Kabbe']
-  },
-  yAxis: {
-    title: {
-      text: 'Fruit eaten'
-    }
-  },
-  series: [{
-    name: 'Tid',
-    value: [0, 0, 0]
-  }]
-};
+import ColumnChart from './components/ColumnChart.jsx';
+import { firedux } from './redux-logic/firedux';
 
 class App extends Component {
   static propTypes = {
-    data: React.PropTypes.array,
-    dispatch: React.PropTypes.func
+    users: React.PropTypes.array
   }
 
   render() {
-    const { data, dispatch } = this.props;
+    const { users } = this.props;
     return (
       <div>
-        <Chart config={config} data={[data.map(entry => entry.value)]} />
+        <ColumnChart data={users} seriesName={'Tid'} />
         {
-          data.map(entry =>
+          users.map(user =>
             <NumberInput
-              key={entry.name}
-              onChange={(number) => dispatch(changeData(entry.name, number))}
+              key={user.category}
+              startValue={user.value}
+              onChange={(number) => firedux.set(`users/${user.category}`, number)}
             />
           )
         }
@@ -49,7 +29,6 @@ class App extends Component {
   }
 }
 
-
 /**
  * mapStateToProps injects App with properties derived
  * from the global redux state.
@@ -57,6 +36,13 @@ class App extends Component {
  * In this example, we will inject a 'listItems' property
  * from the 'list' field in our redux state.
  */
-const mapStateToProps = (state) => ({ data: state.data });
+const mapStateToProps = (state) => {
+  const dataObject = state.firedux.data.users;
+  const users = map(dataObject, (value, name) => ({
+    category: name,
+    value
+  }));
+  return { users };
+};
 
 export default connect(mapStateToProps)(App);
