@@ -1,12 +1,25 @@
-import { createStore } from 'redux';
-import rootReducer from './reducer';
+import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
+import { routerReducer as routing } from 'react-router-redux';
+import thunk from 'redux-thunk';
+import dataReducer from './reducer';
+import { firedux, configure as configureFiredux } from './firedux';
+
+const reducer = combineReducers({
+  data: dataReducer,
+  routing,
+  firedux: firedux.reducer()
+});
 
 const configureStore = preloadedState => {
   // Combine rootReducer and preloadedState to form our store
+
   const store = createStore(
-    rootReducer,                                                // Our reducer
-    preloadedState,                                             // Initial state
-    window.devToolsExtension && window.devToolsExtension()      // Middleware, this allows us to use dev-tools in browser
+    reducer,
+    preloadedState,
+    compose(
+      applyMiddleware(thunk),
+      window.devToolsExtension && window.devToolsExtension()
+    )
   );
 
   // This block allows us to use hot module replacement (webpack) with redux
@@ -16,6 +29,9 @@ const configureStore = preloadedState => {
       store.replaceReducer(nextRootReducer);
     });
   }
+
+  // Configure firedux
+  configureFiredux(store);
 
   return store;
 };
