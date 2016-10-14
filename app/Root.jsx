@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { map } from 'lodash';
+import { Grid, Row, Col, FormGroup } from 'react-bootstrap';
+
 import NumberInput from './components/NumberInput.jsx';
 import ColumnChart from './components/ColumnChart.jsx';
 import { firedux } from './redux-logic/firedux';
@@ -13,18 +15,29 @@ class App extends Component {
   render() {
     const { users } = this.props;
     return (
-      <div>
-        <ColumnChart data={users} seriesName={'Tid'} />
-        {
-          users.map(user =>
-            <NumberInput
-              key={user.category}
-              startValue={user.value}
-              onChange={(number) => firedux.set(`users/${user.category}`, number)}
-            />
-          )
-        }
-      </div>
+      <Grid>
+        <Row>
+          <Col md={12}>
+            <ColumnChart data={users} seriesName={'Tid'} />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <FormGroup>
+              {
+                users.map(user =>
+                  <NumberInput
+                    className="small-af"
+                    key={user.category}
+                    startValue={user.value}
+                    onChange={(number) => firedux.set(`users/${user.category}`, number)}
+                  />
+                )
+              }
+            </FormGroup>
+          </Col>
+        </Row>
+      </Grid>
     );
   }
 }
