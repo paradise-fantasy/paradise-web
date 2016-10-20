@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A relatively simple webpack react project based on parts of the SurvivalJS tutorials",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --host 0.0.0.0",
     "stats": "webpack --profile --json > stats.json",
     "build": "webpack",
     "test": "echo \"No tests yet!\"",
