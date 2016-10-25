@@ -12,6 +12,13 @@ const PATHS = {
   build: path.join(__dirname, 'build')
 };
 
+const TARGET = process.env.npm_lifecycle_event;
+
+const ENV_MAP = {
+  build: 'production',
+  start: 'development'
+}
+
 const common = {
 
   // Entry accepts a path or an object of entries.
@@ -46,15 +53,14 @@ const common = {
     })
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias: {
+      config: path.join(__dirname, 'config', `${ENV_MAP[TARGET]}.config`)
+    }
   }
 };
 
 var config;
-
-// Detect how npm is run and branch based on that
-const TARGET = process.env.npm_lifecycle_event;
-
 switch(TARGET) {
   case 'build':
   case 'stats':
