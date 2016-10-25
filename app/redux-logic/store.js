@@ -1,13 +1,13 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import thunk from 'redux-thunk';
-import dataReducer from './reducer';
-import { firedux, configure as configureFiredux } from './firedux';
+import { apiReducer, logReducer, notificationsReducer, configure as configureSockets } from './sockets';
 
 const reducer = combineReducers({
-  data: dataReducer,
-  routing,
-  firedux: firedux.reducer()
+  api: apiReducer,
+  log: logReducer,
+  notificatons: notificationsReducer,
+  routing
 });
 
 const configureStore = preloadedState => {
@@ -30,8 +30,7 @@ const configureStore = preloadedState => {
     });
   }
 
-  // Configure firedux
-  configureFiredux(store);
+  configureSockets(store.dispatch);
 
   return store;
 };

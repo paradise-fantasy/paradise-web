@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 
-class BoxBody extends Component {
+class BoxFooter extends Component {
   static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.node),
@@ -11,16 +11,15 @@ class BoxBody extends Component {
   }
 
   static defaultProps = {
-    title: 'Title',
     className: ''
   }
 
   render() {
-    const className = classNames(this.props.className, 'box-body');
+    const className = classNames(this.props.className, 'box-footer');
 
     if (this.props.children) return <div className={className}>{this.props.children}</div>;
     return <div className={className} />;
   }
 }
 
-export default BoxBody;
+export default BoxFooter;
