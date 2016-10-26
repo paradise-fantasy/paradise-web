@@ -52,7 +52,7 @@ class PreProjectCountdown extends Component {
     return (
       <Col md={md} sm={sm} xs={xs}>
         <Box color="aqua">
-          <BoxHeader title="Nedtelling til innlevering av forprosjektoppgave" />
+          <BoxHeader title="Nedtelling til innleveringsfrist for forprosjektoppgave" />
           <BoxBody>
             <h1>{ totalHours }:{ minutes }:{ seconds }:{ milliseconds }</h1>
           </BoxBody>
