@@ -1,29 +1,44 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Row, Navbar } from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import PreProjectCountdown from './components/PreProjectCountdown';
 import Logs from './components/Logs';
 import Presence from './components/Presence';
 import Watch from './components/Watch';
 import SystemLoad from './components/SystemLoad';
+import TemperatureChart from './components/TemperatureChart';
 
 { /* import Example from './components/Example'; */ }
 
 class App extends Component {
   render() {
     return (
-      <Grid>
+      <Grid fluid>
         <Row>
-          <PreProjectCountdown md={6} />
-          <Watch md={3} mdOffset={3} />
-        </Row>
-        <Row>
-          <Presence md={3} />
-          <Logs md={9} />
-          {/* <Example md={4} /> */}
-        </Row>
-        <Row>
-          <SystemLoad md={8} />
+          <Col md={3}>
+            <Grid fluid>
+              <Row>
+                <Presence md={12} />
+              </Row>
+            </Grid>
+          </Col>
+          <Col md={5}>
+            <Grid fluid>
+              <Row>
+                <Logs md={12} />
+              </Row>
+            </Grid>
+          </Col>
+          <Col md={4}>
+            <Grid fluid>
+              <Row>
+                <Watch md={6} />
+                <PreProjectCountdown md={6} />
+                <TemperatureChart md={12} />
+                <SystemLoad md={12} />
+              </Row>
+            </Grid>
+          </Col>
         </Row>
       </Grid>
     );
