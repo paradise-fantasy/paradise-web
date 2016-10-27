@@ -10,6 +10,8 @@
   ],
   "rules": {
     "react/require-extension": "off",
+    "react/prop-types": "off",
+    "react/prefer-stateless-function": "off",
     "comma-dangle": "off",
     "no-underscore-dangle": "off"
   }

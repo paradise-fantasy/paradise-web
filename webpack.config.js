@@ -9,7 +9,8 @@ const parts = require('./libs/parts');
 const PATHS = {
   app: path.join(__dirname, 'app'),
   style: path.join(__dirname, 'app', 'style.less'),
-  build: path.join(__dirname, 'build')
+  build: path.join(__dirname, 'build'),
+  images: path.join(__dirname, 'app/assets/images')
 };
 
 const TARGET = process.env.npm_lifecycle_event;
@@ -43,12 +44,17 @@ const common = {
         test: /\.less$/,
         loaders: ['style', 'css', 'less'],
         include: PATHS.style
+      },
+      {
+        test: /\.(jpg|png)$/,
+        loader: 'file',
+        include: PATHS.images
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack demo',
+      title: 'Paradise Dashboard',
       template: 'app/template.html'
     })
   ],
