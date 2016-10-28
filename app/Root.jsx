@@ -7,6 +7,7 @@ import Presence from './components/Presence';
 import Watch from './components/Watch';
 import SystemLoad from './components/SystemLoad';
 import TemperatureChart from './components/TemperatureChart';
+import Music from './components/Music';
 
 { /* import Example from './components/Example'; */ }
 
@@ -16,28 +17,25 @@ class App extends Component {
       <Grid fluid>
         <Row>
           <Col md={3}>
-            <Grid fluid>
-              <Row>
-                <Presence md={12} />
-              </Row>
-            </Grid>
+            <Row>
+              <Presence md={12} />
+            </Row>
           </Col>
           <Col md={5}>
-            <Grid fluid>
-              <Row>
-                <Logs md={12} />
-              </Row>
-            </Grid>
+            <Row>
+              <Logs md={12} />
+            </Row>
+            <Row>
+              <Music md={4} />
+            </Row>
           </Col>
           <Col md={4}>
-            <Grid fluid>
-              <Row>
-                <Watch md={6} />
-                <PreProjectCountdown md={6} />
-                <TemperatureChart md={12} />
-                <SystemLoad md={12} />
-              </Row>
-            </Grid>
+            <Row>
+              <Watch md={6} />
+              <PreProjectCountdown md={6} />
+              <TemperatureChart md={12} />
+              <SystemLoad md={12} />
+            </Row>
           </Col>
         </Row>
       </Grid>
