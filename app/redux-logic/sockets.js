@@ -1,7 +1,6 @@
-import io from 'socket.io-client';
 import moment from 'moment';
-
 import { API_HOST } from 'config';
+import socket from '../socket';
 
 import {
   FETCH_API_RECEIVE,
@@ -72,8 +71,6 @@ const fetchApiData = (dispatch) =>
 export const configure = (dispatch) => {
   fetchLogs(dispatch);
   fetchApiData(dispatch);
-
-  const socket = io(API_HOST);
 
   socket.on('log',
     data => dispatch(receiveSocketLog({
