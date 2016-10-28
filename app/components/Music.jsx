@@ -48,7 +48,10 @@ class Music extends Component {
               <div className="controls">
                 <div className="control-item">
                   <button className="music-button" onClick={this.playPause}>
-                    <span className="glyphicon glyphicon-pause" aria-hidden="true" />
+                    { music.status === 'Playing'
+                      ? <span className="glyphicon glyphicon-pause" aria-hidden="true" />
+                      : <span className="glyphicon glyphicon-play" aria-hidden="true" />
+                    }
                   </button>
                 </div>
                 <div className="control-item" onClick={this.nextSong}>
