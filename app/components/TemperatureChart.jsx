@@ -55,7 +55,7 @@ class TemperatureChart extends Component {
     const data = this.props.data;
 
     let lastData;
-    if (data.sensor === 'SensorTag') {
+    if (data._value.sensor === 'SensorTag') {
       lastData = this.state.sensorTagData.slice(-1)[0];
     } else {
       lastData = this.state.oneWireData.slice(-1)[0];
@@ -75,7 +75,7 @@ class TemperatureChart extends Component {
     let chartData;
     let chartSeries;
 
-    if (data.sensor === 'SensorTag') {
+    if (data._value.sensor === 'SensorTag') {
       chartData = this.state.sensorTagData.slice(0);
       chartSeries = chart.series[0];
     } else {
@@ -85,7 +85,7 @@ class TemperatureChart extends Component {
 
     const dataPoint = {
       x: data._arrivedAt.valueOf(),
-      y: parseFloat(data.temperature)
+      y: parseFloat(data._value.temperature)
     };
 
     if (chartData.length < 10) {
@@ -97,7 +97,7 @@ class TemperatureChart extends Component {
       chartSeries.addPoint([dataPoint.x, dataPoint.y], true, true);
     }
 
-    if (data.sensor === 'SensorTag') {
+    if (data._value.sensor === 'SensorTag') {
       this.setState({ sensorTagData: chartData });
     } else {
       this.setState({ oneWireData: chartData });

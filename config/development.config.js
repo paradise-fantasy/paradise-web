@@ -1,3 +1,3 @@
 module.exports = {
-  API_HOST: 'http://api.komstek.no'
+  API_HOST: 'http://localhost:3000'
 };
