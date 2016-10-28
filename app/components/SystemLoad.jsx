@@ -1,10 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import { Col, Table } from 'react-bootstrap';
 import { Box, BoxHeader, BoxBody, BoxFooter } from './core';
 
-class Example extends Component {
+const calcUsedMemory = (totalString, availString) => {
+  const total = parseFloat(totalString);
+  const avail = parseFloat(availString);
+  const used = total - avail;
+  const percent = (used / total) * 100;
+  return Math.floor(percent);
+};
+
+class SystemLoad extends Component {
+  static propTypes = {
+    ...Col.propTypes,
+    monitor: PropTypes.object
+  }
   render() {
-    const { md, sm, xs } = this.props;
+    const { md, sm, xs, monitor } = this.props;
+    const values = monitor._value;
+    if (!values) {
+      return <div />;
+    }
     return (
       <Col md={md} sm={sm} xs={xs}>
         <Box color="aqua">
@@ -23,15 +40,15 @@ class Example extends Component {
               </thead>
               <tbody>
                 <tr>
-                  <td>fagervoll</td>
-                  <td>0.3</td>
-                  <td>0.8</td>
-                  <td>500 kbit/s</td>
+                  <td>{ values.host }</td>
+                  <td>{`${values.laLoad[0]}`}</td>
+                  <td>{`${calcUsedMemory(values.memTotalReal, values.memAvailReal)} %`}</td>
+                  <td>{ values.ifInOctets }</td>
                   <td>64 C</td>
-                  <td>1 Day 13 Hours 43 minutes</td>
+                  <td>{ values.sysUpTimeInstance[0] }</td>
                 </tr>
                 <tr>
-                  <td>freddyny</td>
+                  <td>{ values.host }</td>
                   <td>0.2</td>
                   <td>0.5</td>
                   <td>3000 kbit/s</td>
@@ -60,4 +77,8 @@ class Example extends Component {
   }
 }
 
-export default Example;
+const mapStateToProps = (state) => ({
+  monitor: state.api.monitor
+});
+
+export default connect(mapStateToProps)(SystemLoad);

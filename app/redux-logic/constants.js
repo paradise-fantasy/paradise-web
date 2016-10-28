@@ -7,5 +7,6 @@ export const SOCKET_NOTIFY_RECEIVE = 'socket-notify-receive';
 export const SERVICES = [
   'presence',
   'temperature',
-  'spotify'
+  'spotify',
+  'monitor'
 ];
