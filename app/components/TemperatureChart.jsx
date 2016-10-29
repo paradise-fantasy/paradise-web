@@ -18,7 +18,11 @@ const commonConfig = {
     data: [],
     type: 'spline'
   }, {
-    name: '1-Wire',
+    name: 'Outside',
+    data: [],
+    type: 'spline'
+  }, {
+    name: 'Inside',
     data: [],
     type: 'spline'
   }
@@ -40,13 +44,14 @@ class TemperatureChart extends Component {
           width: 1,
           color: '#000066'
         }],
-        min: 15,
+        min: -10,
         max: 27
       }
     };
 
     this.state = {
-      oneWireData: [],
+      InsideData: [],
+      OutsideData: [],
       sensorTagData: []
     };
   }
@@ -57,8 +62,10 @@ class TemperatureChart extends Component {
     let lastData;
     if (data._value.sensor === 'SensorTag') {
       lastData = this.state.sensorTagData.slice(-1)[0];
-    } else {
-      lastData = this.state.oneWireData.slice(-1)[0];
+    } else if (data._value.sensor === 'Outside'){
+      lastData = this.state.OutsideData.slice(-1)[0];
+  	}else if (data._value.sensor === 'Inside'){
+      lastData = this.state.InsideData.slice(-1)[0];
     }
 
     if (
@@ -78,8 +85,11 @@ class TemperatureChart extends Component {
     if (data._value.sensor === 'SensorTag') {
       chartData = this.state.sensorTagData.slice(0);
       chartSeries = chart.series[0];
-    } else {
-      chartData = this.state.oneWireData.slice(0);
+	} else if (data._value.sensor === 'Outside') {
+      chartData = this.state.OutsideData.slice(0);
+      chartSeries = chart.series[2];
+    } else if (data._value.sensor === 'Inside'){
+      chartData = this.state.InsideData.slice(0);
       chartSeries = chart.series[1];
     }
 
@@ -99,8 +109,10 @@ class TemperatureChart extends Component {
 
     if (data._value.sensor === 'SensorTag') {
       this.setState({ sensorTagData: chartData });
-    } else {
-      this.setState({ oneWireData: chartData });
+    } else if (data._value.sensor === 'Outside'){
+      this.setState({ OutsideData: chartData });
+    } else if (data._value.sensor === 'Inside'){
+      this.setState({ InsideData: chartData });
     }
   }
 
