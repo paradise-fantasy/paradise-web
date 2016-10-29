@@ -4,6 +4,12 @@ import { Col } from 'react-bootstrap';
 import ReactHighchart from 'react-highcharts';
 import { Box, BoxHeader, BoxBody, BoxFooter } from './core';
 
+ReactHighchart.Highcharts.setOptions({
+  global: {
+    useUTC: false
+  }
+});
+console.log(ReactHighchart.Highcharts.getOptions());
 
 const commonConfig = {
   chart: {
