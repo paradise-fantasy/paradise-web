@@ -7,8 +7,8 @@ import { Box, BoxHeader, BoxBody, BoxFooter } from './core';
 const round = (value, decimals) => Number(Math.round(value+'e'+decimals)+'e-'+decimals); // eslint-disable-line
 
 /** SETS THE MAXIMUM AMOUNT OF DATA POINTS **/
-const MAX_DATA_POINTS = 1200;
-const REFRESH_RATE = 3000; // Every 3 seconds
+const MAX_DATA_POINTS = 20;
+const REFRESH_RATE = 5000; // Every 3 seconds
 
 const COLORS = [
   '#f39c12', // yellow
