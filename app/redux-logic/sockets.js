@@ -44,7 +44,7 @@ export const logReducer = (state = [], action) => {
 export const notificationsReducer = (state = {}) => state;
 
 const fetchLogs = (dispatch) =>
-  fetch(`${API_HOST}/log`)
+  fetch(`${API_HOST}/log?limit=5&sort=-_arrivedAt`)
   .then(result => result.json())
   .then(logs => logs
     .map(log => ({
