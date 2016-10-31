@@ -77,6 +77,7 @@ class TemperatureChart extends Component {
           .addPoint({ x: data.timestamp, y: data.temperature }, false, doShift);
       });
       chart.redraw();
+      this.setState({ queue: [] });
     }, REFRESH_RATE);
   }
 
