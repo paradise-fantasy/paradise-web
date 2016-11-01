@@ -25,48 +25,30 @@ class SystemLoad extends Component {
     return (
       <Col md={md} sm={sm} xs={xs}>
         <Box color="aqua">
-          <BoxHeader title="System Load" />
+          <BoxHeader title="Systemovervåking" />
           <BoxBody>
             <Table>
               <thead>
                 <tr>
                   <th>Maskin</th>
-                  <th>CPU</th>
-                  <th>RAM</th>
-                  <th>Bandwidth</th>
-                  <th>Temperature</th>
-                  <th>Uptime</th>
+                  <th>Oppetid</th>
+                  <th>Prosessor</th>
+                  <th>Minne</th>
+                  <th>Båndbredde</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{ values.host }</td>
-                  <td>{`${values.laLoad[0]}`}</td>
-                  <td>{`${calcUsedMemory(values.memTotalReal, values.memAvailReal)} %`}</td>
-                  <td>{ values.ifInOctets }</td>
-                  <td>64 C</td>
-                  <td>{ values.sysUpTimeInstance[0] }</td>
-                </tr>
-                <tr>
-                  <td>{ values.host }</td>
-                  <td>0.2</td>
-                  <td>0.5</td>
-                  <td>3000 kbit/s</td>
-                  <td>58 C</td>
-                  <td>5 Day 3 Hours 21 minutes</td>
-                </tr>
-                {/* {
-                  this.props.logs.map(log =>
-                    <tr key={log._id}>
-                      <td>{system.name}</td>
-                      <td>{system.cpu}</td>
-                      <td>{system.ram}</td>
-                      <td>{system.bandwidth}</td>
-                      <td>{system.temperature}</td>
-                      <td>{system.uptime}</td>
+                {
+                  Object.keys(values).map(host =>
+                    <tr>
+                      <td>{ values[host].Host[0] }</td>
+                      <td>{ values[host].Uptime[0] }</td>
+                      <td>{ values[host].Load[0][0] }</td>
+                      <td>{ values[host].Memory[0] }</td>
+                      <td>{ values[host].Bandwidth[0] }</td>
                     </tr>
                   )
-                } */}
+                }
               </tbody>
             </Table>
           </BoxBody>
