@@ -10,7 +10,14 @@ class Presence extends Component {
   }
 
   render() {
-    const { md, sm, xs } = this.props;
+    const { md, sm, xs, presence } = this.props;
+
+    if (!presence._value) return <div />;
+    const users = presence._value.status.map(status => {
+      const name = Object.keys(status)[0];
+      return { name, present: status[name] };
+    });
+
     return (
       <Col md={md} sm={sm} xs={xs}>
         <Box color="aqua">
@@ -24,8 +31,7 @@ class Presence extends Component {
               </thead>
               <tbody>
                 {
-                  this.props.presence &&
-                  this.props.presence.status.map(user =>
+                  users.map(user =>
                     <tr key={user.name}>
                       <td>
                         <span className={`user-status ${user.present ? 'present' : 'away'}`} />
@@ -39,10 +45,7 @@ class Presence extends Component {
           </BoxBody>
           <BoxFooter>
             <span style={{ marginRight: 5 }}>Siste endring:</span>
-            { this.props.presence._arrivedAt
-              ? this.props.presence._arrivedAt.format('HH:mm:ss')
-              : '-'
-            }
+            { presence._arrivedAt.format('HH:mm:ss') }
           </BoxFooter>
         </Box>
       </Col>
@@ -50,18 +53,8 @@ class Presence extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  let presenceStatus = [];
-  if (state.api.presence.status) {
-    presenceStatus = state.api.presence.status.map(entry => {
-      const name = Object.keys(entry);
-      return { name, present: entry[name] };
-    });
-  }
-
-  return {
-    presence: { ...state.api.presence, status: presenceStatus }
-  };
-};
+const mapStateToProps = (state) => ({
+  presence: state.api.presence
+});
 
 export default connect(mapStateToProps)(Presence);

@@ -43,7 +43,7 @@ class PreProjectCountdown extends Component {
       else if (newState.milliseconds < 100) newState.milliseconds = `0${newState.milliseconds}`;
 
       this.setState(newState);
-    }, 10);
+    }, 1000);
   }
 
   render() {
@@ -54,7 +54,7 @@ class PreProjectCountdown extends Component {
         <Box color="aqua">
           <BoxHeader title="Nedtelling til innleveringsfrist for forprosjektoppgave" />
           <BoxBody>
-            <h1>{ totalHours }:{ minutes }:{ seconds }:{ milliseconds }</h1>
+            <h1 className="counter">{ totalHours }:{ minutes }:{ seconds }</h1>
           </BoxBody>
         </Box>
       </Col>
