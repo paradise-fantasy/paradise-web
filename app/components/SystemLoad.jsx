@@ -3,14 +3,6 @@ import { connect } from 'react-redux';
 import { Col, Table } from 'react-bootstrap';
 import { Box, BoxHeader, BoxBody, BoxFooter } from './core';
 
-const calcUsedMemory = (totalString, availString) => {
-  const total = parseFloat(totalString);
-  const avail = parseFloat(availString);
-  const used = total - avail;
-  const percent = (used / total) * 100;
-  return Math.floor(percent);
-};
-
 class SystemLoad extends Component {
   static propTypes = {
     ...Col.propTypes,
@@ -52,7 +44,9 @@ class SystemLoad extends Component {
               </tbody>
             </Table>
           </BoxBody>
-          <BoxFooter />
+          <BoxFooter>
+            Siste oppdatering: { monitor._arrivedAt.format('HH:mm:ss') }
+          </BoxFooter>
         </Box>
       </Col>
     );
