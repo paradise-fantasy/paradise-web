@@ -8,6 +8,7 @@ import Watch from './components/Watch';
 import SystemLoad from './components/SystemLoad';
 import TemperatureChart from './components/TemperatureChart';
 import Music from './components/Music';
+import Heartrate from './components/Heartrate';
 
 { /* import Example from './components/Example'; */ }
 
@@ -27,6 +28,7 @@ class App extends Component {
             </Row>
             <Row>
               <Music md={4} />
+              <Heartrate md={4} />
             </Row>
           </Col>
           <Col md={4}>

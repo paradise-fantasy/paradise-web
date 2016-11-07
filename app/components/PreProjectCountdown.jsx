@@ -5,8 +5,9 @@ import { Col } from 'react-bootstrap';
 import { Box, BoxHeader, BoxBody } from './core';
 
 const deadline = moment()
-  .month('November')
-  .date(6)
+  .year(2017)
+  .month('April')
+  .date(15)
   .hour(23)
   .minute(59)
   .second(0);
@@ -52,7 +53,7 @@ class PreProjectCountdown extends Component {
     return (
       <Col md={md} sm={sm} xs={xs}>
         <Box color="aqua">
-          <BoxHeader title="Nedtelling til innleveringsfrist for forprosjektoppgave" />
+          <BoxHeader title="Nedtelling til frist for å søke NTNU! :)" />
           <BoxBody>
             <h1 className="counter">{ totalHours }:{ minutes }:{ seconds }</h1>
           </BoxBody>
