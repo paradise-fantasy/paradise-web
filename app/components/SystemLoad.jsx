@@ -47,7 +47,7 @@ class SystemLoad extends Component {
               <tbody>
                 {
                   Object.keys(values).map(host =>
-                    <tr>
+                    <tr key={values[host].Host[0]}>
                       <td>{ values[host].Host[0] }</td>
                       <td>{ values[host].Uptime[0] }</td>
                       <td>{ values[host].Load[0][0] }</td>
