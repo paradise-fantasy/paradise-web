@@ -9,6 +9,8 @@ import SystemLoad from './components/SystemLoad';
 import TemperatureChart from './components/TemperatureChart';
 import Music from './components/Music';
 import Heartrate from './components/Heartrate';
+import Link from './components/Link';
+import Tittel from './components/Tittel'
 
 { /* import Example from './components/Example'; */ }
 
@@ -17,8 +19,9 @@ class App extends Component {
     return (
       <Grid fluid>
         <Row>
-          <Col md={3}>
+          <Col md={2}>
             <Row>
+              <Watch md={12} />
               <Presence md={12} />
             </Row>
           </Col>
@@ -27,16 +30,15 @@ class App extends Component {
               <Logs md={12} />
             </Row>
             <Row>
-              <Music md={4} />
-              <Heartrate md={4} />
+              <Tittel md={12} />
             </Row>
           </Col>
-          <Col md={4}>
+          <Col md={5}>
             <Row>
-              <Watch md={6} />
+              <Music md={6} />
               <PreProjectCountdown md={6} />
-              <TemperatureChart md={12} />
-              <SystemLoad md={12} />
+              <Heartrate md={4} />
+              <Link md={12} />
             </Row>
           </Col>
         </Row>

@@ -28,14 +28,13 @@ class PreProjectCountdown extends Component {
       const duration = moment.duration(timeLeft);
 
       const newState = {
+        totalDays: Math.floor(duration.asDays()),
         days: duration.days(),
         hours: duration.hours() - 1,
         minutes: duration.minutes() + 1,
-        seconds: duration.seconds(),
-        milliseconds: duration.milliseconds()
+        seconds: duration.seconds()
       };
 
-      newState.totalHours = newState.hours + (newState.days * 24);
 
       if (newState.hours < 10) newState.hours = `0${newState.hours}`;
       if (newState.minutes < 10) newState.minutes = `0${newState.minutes}`;
@@ -49,13 +48,20 @@ class PreProjectCountdown extends Component {
 
   render() {
     const { md, sm, xs } = this.props;
-    const { totalHours, minutes, seconds, milliseconds } = this.state;
+    const { totalDays, days, hours, minutes, seconds } = this.state;
     return (
       <Col md={md} sm={sm} xs={xs}>
         <Box color="aqua">
-          <BoxHeader title="Nedtelling til frist for å søke NTNU! :)" />
           <BoxBody>
-            <h1 className="counter">{ totalHours }:{ minutes }:{ seconds }</h1>
+            <h1 className="counter-header">Husk å søke KOMTEK innen:</h1>
+            <div className="counter">
+
+              <h1>{ totalDays } dager</h1>
+              <h1>{ hours } timer</h1>
+              <h1>{ minutes } minutter</h1>
+              <h1>{ seconds } sekunder</h1>
+            </div>
+
           </BoxBody>
         </Box>
       </Col>

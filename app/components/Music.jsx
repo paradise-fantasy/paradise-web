@@ -37,7 +37,7 @@ class Music extends Component {
             </h3>
           </div>
           <BoxBody>
-            <div className="flex-container">
+            <div className="flex-container music-box">
               <div className="cover">
                 <img
                   src={`${music.albumArt}`}
@@ -49,14 +49,14 @@ class Music extends Component {
                 <div className="control-item">
                   <button className="music-button" onClick={this.playPause}>
                     { music.status === 'Playing'
-                      ? <span className="glyphicon glyphicon-pause" aria-hidden="true" />
-                      : <span className="glyphicon glyphicon-play" aria-hidden="true" />
+                      ? <span className="glyphicon glyphicon-pause music-icon" aria-hidden="true" />
+                    : <span className="glyphicon glyphicon-play music-icon" aria-hidden="true" />
                     }
                   </button>
                 </div>
                 <div className="control-item" onClick={this.nextSong}>
                   <button className="music-button">
-                    <span className="glyphicon glyphicon-step-forward" aria-hidden="true" />
+                    <span className="glyphicon glyphicon-step-forward music-icon" aria-hidden="true" />
                   </button>
                 </div>
               </div>
