@@ -5,10 +5,10 @@ import { Col } from 'react-bootstrap';
 import { Box, BoxHeader, BoxBody } from './core';
 
 const deadline = moment()
-  .month('December')
-  .date(6)
-  .hour(12)
-  .minute(0)
+  .month('June')
+  .date(8)
+  .hour(23)
+  .minute(59)
   .second(0);
 
 class PreProjectCountdown extends Component {
@@ -40,7 +40,7 @@ class PreProjectCountdown extends Component {
         milliseconds: duration.milliseconds()
       };
 
-      newState.totalHours = newState.hours + (newState.days * 24);
+      newState.totalHours = Math.floor(duration.as('hours'));
 
       if (newState.totalHours < 10) newState.totalHours = `0${newState.totalHours}`;
       if (newState.hours < 10) newState.hours = `0${newState.hours}`;
