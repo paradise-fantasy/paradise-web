@@ -8,5 +8,6 @@ export const SERVICES = [
   'presence',
   'temperature',
   'spotify',
-  'monitor'
+  'monitor',
+  'co2'
 ];
