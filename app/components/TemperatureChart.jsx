@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Col } from 'react-bootstrap';
 import ReactHighchart from 'react-highcharts';
+import { isEmpty } from 'lodash';
 import { Box, BoxHeader, BoxBody, BoxFooter } from './core';
 
 const round = (value, decimals) => Number(Math.round(value+'e'+decimals)+'e-'+decimals); // eslint-disable-line
@@ -82,6 +83,7 @@ class TemperatureChart extends Component {
   }
 
   componentDidUpdate() {
+    if (!this.props.data || isEmpty(this.props.data)) return;
     const { _arrivedAt, _value: { sensor, temperature } } = this.props.data;
     const data = {
       timestamp: _arrivedAt.valueOf(),
@@ -98,7 +100,6 @@ class TemperatureChart extends Component {
   addSensor(sensor, data) {
     const chart = this.chart.getChart();
     const seriesIndex = chart.series.length;
-    console.log(seriesIndex);
 
     chart.addSeries({
       type: 'spline',
