@@ -7,7 +7,7 @@ import { Box, BoxHeader, BoxBody, BoxFooter } from './core';
 const round = (value, decimals) => Number(Math.round(value+'e'+decimals)+'e-'+decimals); // eslint-disable-line
 
 /** SETS THE MAXIMUM AMOUNT OF DATA POINTS **/
-const MAX_DATA_POINTS = 100;
+const MAX_DATA_POINTS = 288;
 const MAX_BUFFER_POINTS = 60;
 
 const COLORS = [
@@ -75,7 +75,6 @@ class CO2Chart extends Component {
     const { _arrivedAt, _value } = this.props.data;
 
     const { numDataPoints, buffer } = this.state;
-    console.log(numDataPoints, buffer);
 
     buffer.push({ _arrivedAt, _value });
     if (numDataPoints === 0 || buffer.length >= MAX_BUFFER_POINTS) {
